@@ -1,3 +1,4 @@
 %{
+  "elixir_make": {:hex, :elixir_make, "0.6.0", "38349f3e29aff4864352084fc736fa7fa0f2995a819a737554f7ebd28b85aaab", [:mix], [], "hexpm"},
   "gnuplot": {:hex, :gnuplot, "1.19.96", "8bdb733cd2d037593886c0962693f48d35baf62af193bdbb3395a0fbac17c2c5", [:mix], [], "hexpm"},
 }

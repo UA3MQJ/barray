@@ -15,7 +15,7 @@ defmodule Barray do
   """
 
   def new(element_size, element_count) when is_number(element_size) and is_number(element_count),
-    do: :binary.copy(:binary.copy(<<0>>, element_size), element_count)
+    do: UtilsNif.make_binary(element_size * element_count)
   def new(binary_element, element_count) when is_binary(binary_element) and is_number(element_count),
     do: :binary.copy(binary_element, element_count)
 

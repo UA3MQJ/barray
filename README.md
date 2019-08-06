@@ -29,4 +29,10 @@ iex(5)> some_data == arr |> Barray.get(1024, some_index)
 true
 ```
 
+## Performance
 
+Create time of array A(n) each element equ 1Kb when n=1..1000
+![Image of create_1k](create_1k.png)
+
+Create time of array A(n) each element equ 1Mb when n=1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 10000
+![Image of create_1m](create_1m.png)
