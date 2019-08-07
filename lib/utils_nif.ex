@@ -19,6 +19,10 @@ defmodule UtilsNif do
     make_binary(size)
   end
 
+  def dirty_update_binary(<<bin :: binary>>, <<element :: binary>>, position) do
+    dirty_update_binary(<<bin :: binary>>, <<element :: binary>>, position)
+  end
+
   defp utils(_, _) do
     exit(:nif_library_not_loaded)
   end
