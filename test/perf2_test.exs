@@ -23,7 +23,7 @@ defmodule Perf2Test do
       [:set, :ylabel, "Time (s)"],
       [:set, :key, :left, :top],
       plots([
-          ["-", :title, "create time (kb)", :with, :line]
+          ["-", :title, "create time", :with, :line]
       ])
       ],
       [
