@@ -7,7 +7,7 @@ defmodule Perf4Test do
     @tag perf4_test: true
     # mix test --only perf4_test
 
-    test "perf write test 1G" do
+    test "perf write test 1Mb" do
   
       arr = Barray.new(1, 1024*1024*1024)
 
@@ -25,7 +25,7 @@ defmodule Perf4Test do
       {:ok, _cmd} = plot([
         [:set, :term, :pngcairo],
         [:set, :output, "./set.png"],
-        [:set, :title, "Set element time of A(n) each element equ 1 byte"],
+        [:set, :title, "Set element time of A(1Mb) each element equ 1 byte"],
         [:set, :xlabel, "n"],
         [:set, :ylabel, "Time (s)"],
         [:set, :key, :left, :top],

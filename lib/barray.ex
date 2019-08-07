@@ -44,4 +44,7 @@ defmodule Barray do
     head <> element <> tail
   end
 
+  def dirty_set(<<bin :: binary>>, <<element :: binary>>, position) do
+    UtilsNif.dirty_update_binary(bin, element, position)
+  end
 end
