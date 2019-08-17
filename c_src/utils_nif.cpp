@@ -81,6 +81,34 @@ update_binary(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
     return enif_make_binary(env, &new_data);
 }
 
+static ERL_NIF_TERM
+get_sub_binary(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
+{
+    ErlNifBinary data, sub_data;
+    ErlNifSInt64 i, el_size;
+    int64_t i_start;
+    int64_t i_end;
+
+    if (!enif_inspect_binary(env, argv[0], &data)) {
+        return enif_make_badarg(env);
+    }
+
+    enif_get_int64(env, argv[1], &el_size);
+    enif_get_int64(env, argv[2], &i);
+
+    i_start = i * el_size;
+    i_end = i_start + el_size;
+
+    if ((i_start<0)||(i_start>=data.size)||(i_end>data.size)) {
+        return enif_make_badarg(env);
+    }
+
+    enif_alloc_binary(el_size, &sub_data);
+    memcpy(sub_data.data, data.data + i_start, el_size);
+
+    return enif_make_binary(env, &sub_data);
+}
+
 /*
  * Load the nif. Initialize some stuff and such
  */
@@ -103,6 +131,7 @@ static ErlNifFunc nif_funcs[] = {
     {"make_binary", 1, make_binary},
     {"dirty_update_binary", 3, dirty_update_binary},
     {"update_binary", 3, update_binary},
+    {"get_sub_binary", 3, get_sub_binary},
 };
 
 ERL_NIF_INIT(Elixir.UtilsNif, nif_funcs, on_load, on_reload, on_upgrade, NULL)

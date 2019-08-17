@@ -11,7 +11,18 @@ defmodule Perf3Test do
   
       arr = Barray.new(1, 1024*1024*1024*1024)
 
-      create_times = for x <- 1..1000 do
+      times1 = for x <- 1..1000 do
+
+        xx = (x * 1) * 1024*1024*1024
+  
+        t1=:erlang.monotonic_time(:nanosecond)
+        _element = Barray.get_erlang(arr, 1, xx)
+        t2=:erlang.monotonic_time(:nanosecond)
+  
+        [xx, (t2-t1) / 1]
+      end
+
+      times2 = for x <- 1..1000 do
 
         xx = (x * 1) * 1024*1024*1024
   
@@ -30,11 +41,13 @@ defmodule Perf3Test do
         [:set, :ylabel, "Time (ns)"],
         [:set, :key, :left, :top],
         plots([
-            ["-", :title, "get time", :with, :line]
+            ["-", :title, "get time", :with, :line],
+            ["-", :title, "nif get time", :with, :line]
         ])
         ],
         [
-          create_times
+          times1,
+          times2
         ])
     end
   

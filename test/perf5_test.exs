@@ -25,7 +25,7 @@ defmodule Perf5Test do
       {:ok, _cmd} = plot([
         [:set, :term, :pngcairo],
         [:set, :output, "./dirty_set.png"],
-        [:set, :title, "Set element time of A(1Mb) each element equ 1 byte"],
+        [:set, :title, "Set (dirty) element time of A(1Mb) each element equ 1 byte"],
         [:set, :xlabel, "n"],
         [:set, :ylabel, "Time (ns)"],
         [:set, :key, :left, :top],

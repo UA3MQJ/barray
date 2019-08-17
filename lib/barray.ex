@@ -19,7 +19,11 @@ defmodule Barray do
   def new(binary_element, element_count) when is_binary(binary_element) and is_number(element_count),
     do: :binary.copy(binary_element, element_count)
 
-  def get(<<bin :: binary>>, element_size, position) do
+  def get(<<bin :: binary>>, element_size, position),
+    do: UtilsNif.get_sub_binary(bin, element_size, position)
+
+  # clean erlang realization
+  def get_erlang(<<bin :: binary>>, element_size, position) do
     bin_size = byte_size(bin)
     head_size = position * element_size
     tail_size = bin_size - head_size - element_size

@@ -24,6 +24,9 @@ defmodule UtilsNif do
   def update_binary(<<bin :: binary>>, <<element :: binary>>, position),
     do: update_binary(<<bin :: binary>>, <<element :: binary>>, position)
 
+  def get_sub_binary(<<bin :: binary>>, element_size, position),
+    do: get_sub_binary(<<bin :: binary>>, element_size, position)
+
   defp utils(_, _) do
     exit(:nif_library_not_loaded)
   end
