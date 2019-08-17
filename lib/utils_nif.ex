@@ -15,13 +15,14 @@ defmodule UtilsNif do
     :ok = :erlang.load_nif(nif_filename, 0)
   end
 
-  def make_binary(size) do
-    make_binary(size)
-  end
+  def make_binary(size),
+    do: make_binary(size)
 
-  def dirty_update_binary(<<bin :: binary>>, <<element :: binary>>, position) do
-    dirty_update_binary(<<bin :: binary>>, <<element :: binary>>, position)
-  end
+  def dirty_update_binary(<<bin :: binary>>, <<element :: binary>>, position),
+    do: dirty_update_binary(<<bin :: binary>>, <<element :: binary>>, position)
+
+  def update_binary(<<bin :: binary>>, <<element :: binary>>, position),
+    do: update_binary(<<bin :: binary>>, <<element :: binary>>, position)
 
   defp utils(_, _) do
     exit(:nif_library_not_loaded)

@@ -31,7 +31,14 @@ defmodule Barray do
     element
   end
 
-  def set(<<bin :: binary>>, <<element :: binary>>, position) do
+  def dirty_set(<<bin :: binary>>, <<element :: binary>>, position),
+    do: UtilsNif.dirty_update_binary(bin, element, position)
+
+  def set(<<bin :: binary>>, <<element :: binary>>, position),
+    do: UtilsNif.update_binary(bin, element, position)
+
+  # clean erlang realization
+  def set_erlang(<<bin :: binary>>, <<element :: binary>>, position) do
     bin_size = byte_size(bin)
     element_size = byte_size(element)
     head_size = position * element_size
@@ -44,7 +51,4 @@ defmodule Barray do
     head <> element <> tail
   end
 
-  def dirty_set(<<bin :: binary>>, <<element :: binary>>, position) do
-    UtilsNif.dirty_update_binary(bin, element, position)
-  end
 end
