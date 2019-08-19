@@ -30,7 +30,7 @@ defmodule Perf5Test do
         [:set, :ylabel, "Time (ns)"],
         [:set, :key, :left, :top],
         plots([
-            ["-", :title, "get time", :with, :line]
+            ["-", :title, "set time", :with, :line]
         ])
         ],
         [
