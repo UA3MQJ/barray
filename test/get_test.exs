@@ -2,7 +2,6 @@ defmodule GetTest do
   use ExUnit.Case, async: false
   doctest Barray
   require Logger
-  import Gnuplot
 
   @tag get_test: true
   # mix test --only get_test
