@@ -4,7 +4,7 @@ defmodule Barray.MixProject do
   def project do
     [
       app: :barray,
-      version: "0.1.0",
+      version: "1.0.1",
       elixir: "~> 1.6",
       compilers: [:elixir_make] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
