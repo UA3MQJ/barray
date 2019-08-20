@@ -2,7 +2,6 @@ defmodule DirtySetTest do
   use ExUnit.Case, async: false
   doctest Barray
   require Logger
-  import Gnuplot
 
   @tag dirty_set_test: true
   # mix test --only dirty_set_test

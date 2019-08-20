@@ -16,7 +16,7 @@ defmodule Perf4Test do
         xx = (x * 10) * 1024 * 1024
   
         t1=:erlang.monotonic_time(:nanosecond)
-        arr = Barray.set_erlang(arr, <<0>>, xx)
+        _arr = Barray.set_erlang(arr, <<0>>, xx)
         t2=:erlang.monotonic_time(:nanosecond)
   
         [x, (t2-t1) / 1000000000]
@@ -27,7 +27,7 @@ defmodule Perf4Test do
         xx = (x * 10) * 1024 * 1024
   
         t1=:erlang.monotonic_time(:nanosecond)
-        arr = Barray.set(arr, <<0>>, xx)
+        _arr = Barray.set(arr, <<0>>, xx)
         t2=:erlang.monotonic_time(:nanosecond)
   
         [x, (t2-t1) / 1000000000]

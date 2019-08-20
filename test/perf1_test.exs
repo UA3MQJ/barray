@@ -26,7 +26,6 @@ defmodule Perf1Test do
       end
 
       avg_result = Enum.sum(results) / avg
-      key = avg_result
 
       [xx, avg_result]
     end
@@ -67,11 +66,8 @@ defmodule Perf1Test do
         end
       end)
       |> Enum.map(fn({tm, cnt}) -> [tm, cnt] end)
-      |> Enum.filter(fn([tm1, cnt2]) -> tm1 < 5000 end)
-      |> Enum.sort_by(fn([tm1, cnt2]) -> tm1 end)
-  
-      Logger.debug ">>>>> create_times=#{inspect create_times}"
-      Logger.debug ">>>>> times=#{inspect times}"  
+      |> Enum.filter(fn([tm1, _cnt2]) -> tm1 < 5000 end)
+      |> Enum.sort_by(fn([tm1, _cnt2]) -> tm1 end)
 
     {:ok, _cmd} = plot([
       [:set, :term, :pngcairo],
