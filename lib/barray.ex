@@ -20,8 +20,10 @@ defmodule Barray do
     do: :binary.copy(binary_element, element_count)
 
   def get(<<bin :: binary>>, element_size, position),
-    # do: UtilsNif.get_sub_binary(bin, element_size, position)
     do: :binary.part(bin, {position * element_size, element_size})
+
+  def get_nif(<<bin :: binary>>, element_size, position),
+    do: UtilsNif.get_sub_binary(bin, element_size, position)
 
   # clean erlang realization
   def get_erlang(<<bin :: binary>>, element_size, position) do

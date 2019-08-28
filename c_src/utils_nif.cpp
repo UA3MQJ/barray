@@ -103,10 +103,11 @@ get_sub_binary(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
         return enif_make_badarg(env);
     }
 
-    enif_alloc_binary(el_size, &sub_data);
-    memcpy(sub_data.data, data.data + i_start, el_size);
-
-    return enif_make_binary(env, &sub_data);
+    // enif_alloc_binary(el_size, &sub_data);
+    // memcpy(sub_data.data, data.data + i_start, el_size);
+    // return enif_make_binary(env, &sub_data);
+    
+    return enif_make_sub_binary(env, argv[0], i_start, el_size);
 }
 
 /*

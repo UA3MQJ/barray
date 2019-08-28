@@ -11,11 +11,11 @@ defmodule Perf3Test do
   
       arr = Barray.new(1, 1024*1024*1024*1024)
 
-      times1 = for x <- 1..(1024*1024 - 1) do
+      times1 = for x <- 1..(1024 - 1) do
 
-        xx = (x * 1) * 1024*1024
+        xx = (x * 1) * 1024*1024*1024
   
-        avg = 10
+        avg = 20000
   
         results = for _n <- 1..avg do
           t1=:erlang.monotonic_time(:nanosecond)
@@ -29,11 +29,11 @@ defmodule Perf3Test do
         [xx, avg_result]
       end
 
-      times2 = for x <- 1..(1024*1024 - 1) do
+      times2 = for x <- 1..(1024 - 1) do
 
-        xx = (x * 1) * 1024*1024
+        xx = (x * 1) * 1024*1024*1024
   
-        avg = 10
+        avg = 20000
   
         results = for _n <- 1..avg do
           t1=:erlang.monotonic_time(:nanosecond)
@@ -46,22 +46,43 @@ defmodule Perf3Test do
   
         [xx, avg_result]
       end
+
+      times3 = for x <- 1..(1024 - 1) do
+
+        xx = (x * 1) * 1024*1024*1024
   
+        avg = 20000
+  
+        results = for _n <- 1..avg do
+          t1=:erlang.monotonic_time(:nanosecond)
+          _element = Barray.get_nif(arr, 1, xx)
+          t2=:erlang.monotonic_time(:nanosecond)
+          (t2-t1)
+        end
+
+        avg_result = Enum.sum(results) / avg
+  
+        [xx, avg_result]
+      end
+
       {:ok, _cmd} = plot([
         [:set, :term, :pngcairo],
         [:set, :output, "./get_1g.png"],
         [:set, :title, "Get element time of A(n) each element equ 1 byte, n=1G"],
         [:set, :xlabel, "n"],
         [:set, :ylabel, "Time (ns)"],
+        [:set, :yrange, '[0:400]'],
         [:set, :key, :left, :top],
         plots([
             ["-", :title, "get (math) time", :with, :line],
-            ["-", :title, "get (binary.part) time", :with, :line]
+            ["-", :title, "get (binary.part) time", :with, :line],
+            ["-", :title, "get (nif) time", :with, :line],
         ])
         ],
         [
           times1,
-          times2
+          times2,
+          times3,
         ])
     end
   

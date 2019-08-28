@@ -90,7 +90,7 @@ Create time of array A(n) each element equ 1Mb when n=1, 2, 4, 8, 16, 32, 64, 12
 
 ![Image of create_1m](create_1m.png)
 
-Get element time from 1G array approximately 50000ns
+Get element time from 1G array approximately average 200ns
 
 ![Image of get_1g](get_1g.png)
 
