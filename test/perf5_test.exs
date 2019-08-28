@@ -14,12 +14,20 @@ defmodule Perf5Test do
       create_times = for x <- 1..1000 do
 
         xx = (x * 1) * 1024 * 1024
+
+        avg = 10000
   
-        t1=:erlang.monotonic_time(:nanosecond)
-        :ok = Barray.dirty_set(arr, <<0>>, xx)
-        t2=:erlang.monotonic_time(:nanosecond)
+        results = for _n <- 1..avg do
+          t1=:erlang.monotonic_time(:nanosecond)
+          :ok = Barray.dirty_set(arr, <<0>>, xx)
+          t2=:erlang.monotonic_time(:nanosecond)
+          (t2-t1)
+        end
+
+        avg_result = Enum.sum(results) / avg
   
-        [x, (t2-t1) / 1]
+        [xx, avg_result]
+
       end
   
       {:ok, _cmd} = plot([

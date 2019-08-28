@@ -98,7 +98,7 @@ Writing to an array is very slow. Depends on the size of the array. For 1mb arch
 
 ![Image of set](set.png)
 
-Dirty update immutabble binary. Fast. Not safe for multithread.
+Dirty update immutabble binary. Fast. Not safe for multithread. Approximately average 350ns
 
 ![Image of dirty_set](dirty_set.png)
 
