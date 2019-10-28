@@ -20,7 +20,7 @@ defmodule Perf5Test do
   
         results = for _n <- 1..avg do
           t1=:erlang.monotonic_time(:nanosecond)
-          arr = Barray.dirty_set(arr, <<0>>, xx)
+          _arr = Barray.dirty_set(arr, <<0>>, xx)
           t2=:erlang.monotonic_time(:nanosecond)
           (t2-t1)
         end

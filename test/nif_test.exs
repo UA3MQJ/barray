@@ -31,13 +31,13 @@ defmodule NifTest do
 
     # update test
     :ok = UtilsNif.dirty_update_binary(arr, <<0, 0>>, 0)
-    assert <<0, 0, 3, 4, 5, 6, 7>> == arr
-    arr = UtilsNif.dirty_update_binary(arr, <<0, 0>>, 1)
-    assert <<0, 0, 0, 0, 5, 6, 7>> = arr
-    arr = UtilsNif.dirty_update_binary(arr, <<0, 0>>, 2)
-    assert <<0, 0, 0, 0, 0, 0, 7>> = arr
-    arr = UtilsNif.dirty_update_binary(arr, <<0>>, 6)
-    assert <<0, 0, 0, 0, 0, 0, 0>> = arr
+    assert <<0, 0, 3, 4, 5, 6, 7>> == UtilsNif.get_sub_binary(arr, 7, 0)
+    :ok = UtilsNif.dirty_update_binary(arr, <<0, 0>>, 1)
+    assert <<0, 0, 0, 0, 5, 6, 7>> == UtilsNif.get_sub_binary(arr, 7, 0)
+    :ok = UtilsNif.dirty_update_binary(arr, <<0, 0>>, 2)
+    assert <<0, 0, 0, 0, 0, 0, 7>> == UtilsNif.get_sub_binary(arr, 7, 0)
+    :ok = UtilsNif.dirty_update_binary(arr, <<0>>, 6)
+    assert <<0, 0, 0, 0, 0, 0, 0>> == UtilsNif.get_sub_binary(arr, 7, 0)
 
     # check diapazone
     assert_raise ArgumentError, fn ->
