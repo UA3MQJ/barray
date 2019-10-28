@@ -11,7 +11,7 @@ env:
 
 before_script:
   - mix local.hex --force
-  - mix local.rebar
+  - mix local.rebar --force
   - MIX_ENV=test mix deps.get
 script:
   - MIX_ENV=test mix test
