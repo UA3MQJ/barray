@@ -102,6 +102,20 @@ Dirty update immutabble binary. Fast. Not safe for multithread. Approximately av
 
 ![Image of dirty_set](dirty_set.png)
 
+# Coverage
+
+Overall result
+
+```
+MIX_ENV=test mix coveralls
+```
+
+View the detail result in html
+
+```
+MIX_ENV=test mix coveralls.html
+```
+
 ## Thanks
 
  * [High-loaded systems developer contest](https://highloadcup.ru)
