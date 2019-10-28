@@ -82,6 +82,8 @@ iex(18)> Barray.new(<<0, 255>>, 4)
 
 ## Performance
 
+TODO Gnuplot broken in OTP 22 :(
+
 Create time of array A(n) each element equ 1Kb when n=1..1000
 
 ![Image of create_1k](create_1k.png)
