@@ -7,6 +7,7 @@ defmodule Perf3Test do
     @tag perf3_test: true
     # mix test --only perf3_test
 
+    @tag :perf
     test "perf read test 1G" do
   
       arr = Barray.new(1, 1024*1024*1024*1024)

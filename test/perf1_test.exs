@@ -7,6 +7,7 @@ defmodule Perf1Test do
   @tag perf1_test: true
   # mix test --only perf1_test
 
+  @tag :perf
   test "perf test 1k" do
 
     _warm_up = for x <- 100..1000 do

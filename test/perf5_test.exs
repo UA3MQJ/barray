@@ -7,6 +7,7 @@ defmodule Perf5Test do
     @tag perf5_test: true
     # mix test --only perf5_test
 
+    @tag :perf
     test "perf dirty_write test 1Mb" do
   
       arr = Barray.new(1, 1024*1024*1024)
@@ -15,11 +16,11 @@ defmodule Perf5Test do
 
         xx = (x * 1) * 1024 * 1024
 
-        avg = 10000
+        avg = 10
   
         results = for _n <- 1..avg do
           t1=:erlang.monotonic_time(:nanosecond)
-          :ok = Barray.dirty_set(arr, <<0>>, xx)
+          arr = Barray.dirty_set(arr, <<0>>, xx)
           t2=:erlang.monotonic_time(:nanosecond)
           (t2-t1)
         end

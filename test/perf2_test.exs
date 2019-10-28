@@ -4,6 +4,7 @@ defmodule Perf2Test do
   require Logger
   import Gnuplot
 
+  @tag :perf
   test "perf test 1m" do
     create_times = for x <- [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 10000] do
       xx = x * 1

@@ -4,6 +4,7 @@ defmodule PerfTest do
   require Logger
   # import Gnuplot
 
+  @tag :perf
   test "perf test" do
   end
 

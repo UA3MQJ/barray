@@ -5,7 +5,7 @@ defmodule Barray.MixProject do
     [
       app: :barray,
       version: "1.0.1",
-      elixir: "~> 1.9",
+      elixir: "~> 1.6",
       compilers: [:elixir_make] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -23,7 +23,7 @@ defmodule Barray.MixProject do
   defp deps do
     [
       {:gnuplot, "~> 1.19", only: :test},
-      {:elixir_make, "~> 0.4", runtime: false},
+      {:elixir_make, "~> 0.6.0", runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
     ]
   end
