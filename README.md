@@ -1,5 +1,7 @@
 # Barray
 
+[![Coverage Status](https://travis-ci.org/UA3MQJ/barray.svg?branch=master)](https://travis-ci.org/UA3MQJ/barray)
+
 Array of fixed size type in array. The array is stored in a standard erlang binary. For example, an array of 10 elements of 1 byte is stored in binary `<<1, 2, 3, 4, 5, 6, 7, 8, 9, 10>>`.
 
 ## Installation
