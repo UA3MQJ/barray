@@ -32,7 +32,7 @@ defmodule Perf1Test do
     end
 
     {:ok, _cmd} = plot([
-      [:set, :term, :pngcairo],
+      [:set, :term, :png],
       [:set, :output, "./create_1k.png"],
       [:set, :title, "Create time of A(n) each element equ 1Kb"],
       [:set, :xlabel, "n"],
@@ -71,7 +71,7 @@ defmodule Perf1Test do
       |> Enum.sort_by(fn([tm1, _cnt2]) -> tm1 end)
 
     {:ok, _cmd} = plot([
-      [:set, :term, :pngcairo],
+      [:set, :term, :png],
       [:set, :output, "./create_1k_time.png"],
       [:set, :title, "Time distribution"],
       [:set, :xlabel, "Time ns"],

@@ -22,7 +22,7 @@ defmodule Barray.MixProject do
 
   defp deps do
     [
-      {:gnuplot, "~> 1.19", only: :test},
+      {:gnuplot, git: "git@github.com:devstopfix/gnuplot-elixir.git"},
       {:elixir_make, "~> 0.6.0", runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
     ]

@@ -35,7 +35,7 @@ defmodule Perf4Test do
       end
 
       {:ok, _cmd} = plot([
-        [:set, :term, :pngcairo],
+        [:set, :term, :png],
         [:set, :output, "./set.png"],
         [:set, :title, "Set element time of A(1Mb) each element equ 1 byte"],
         [:set, :xlabel, "n"],

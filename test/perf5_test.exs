@@ -32,7 +32,7 @@ defmodule Perf5Test do
       end
   
       {:ok, _cmd} = plot([
-        [:set, :term, :pngcairo],
+        [:set, :term, :png],
         [:set, :output, "./dirty_set.png"],
         [:set, :title, "Set (dirty) element time of A(1Mb) each element equ 1 byte"],
         [:set, :xlabel, "n"],

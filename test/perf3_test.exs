@@ -67,7 +67,7 @@ defmodule Perf3Test do
       end
 
       {:ok, _cmd} = plot([
-        [:set, :term, :pngcairo],
+        [:set, :term, :png],
         [:set, :output, "./get_1g.png"],
         [:set, :title, "Get element time of A(n) each element equ 1 byte, n=1G"],
         [:set, :xlabel, "n"],

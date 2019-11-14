@@ -17,7 +17,7 @@ defmodule Perf2Test do
     end
 
     {:ok, _cmd} = plot([
-      [:set, :term, :pngcairo],
+      [:set, :term, :png],
       [:set, :output, "./create_1m.png"],
       [:set, :title, "Create time of A(n) each element equ 1Mb"],
       [:set, :xlabel, "n"],
