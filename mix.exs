@@ -6,7 +6,8 @@ defmodule Barray.MixProject do
       app: :barray,
       version: "1.0.1",
       elixir: "~> 1.6",
-      compilers: [:elixir_make] ++ Mix.compilers(),
+      compilers: [:rustler] ++ [:elixir_make] ++ Mix.compilers(),
+      rustler_crates: [rutils: []],
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
@@ -25,6 +26,7 @@ defmodule Barray.MixProject do
       {:gnuplot, git: "git@github.com:devstopfix/gnuplot-elixir.git"},
       {:elixir_make, "~> 0.6.0", runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
+      {:rustler, "~> 0.21.0"},
     ]
   end
 end

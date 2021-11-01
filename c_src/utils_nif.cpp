@@ -1,6 +1,6 @@
 #include <erl_nif.h>
-// #include <mem.h>
 #include <string.h>
+#include <memory>
 
 static ERL_NIF_TERM
 make_binary(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
@@ -110,11 +110,68 @@ get_sub_binary(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
     return enif_make_sub_binary(env, argv[0], i_start, el_size);
 }
 
+static ErlNifResourceType* array_type = NULL;
+
+typedef struct {
+  uint32_t length;
+  uint32_t width;
+//   uint8_t* items;
+} Array;
+
+static ERL_NIF_TERM
+res_make(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[]) {
+
+    long res_length; //4 байта (32 бита)
+    long res_width; 
+
+    if (!enif_get_long(env, argv[0], &res_length))
+        return enif_make_badarg(env);
+
+    if (!enif_get_long(env, argv[1], &res_width))
+        return enif_make_badarg(env);
+    
+    Array* array = static_cast<Array *>(enif_alloc_resource(array_type, sizeof(Array)));
+
+    array->length = res_length;
+    array->width  = res_width;
+
+    ERL_NIF_TERM term = enif_make_resource(env, array);
+
+    enif_release_resource(array); 
+
+    return term;
+}
+
+static ERL_NIF_TERM
+res_length(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[]) {
+    Array* array;
+
+    if(!enif_get_resource(env, argv[0], array_type, (void **) &array)) {
+        return enif_make_badarg(env);
+    }
+
+    ERL_NIF_TERM term = enif_make_long(env, array->length);
+
+    return term;
+}
+
+
+static void destruct_array(ErlNifEnv *env, void *arg) {
+    printf("\n\rDestructing array: %p", arg);
+    // Array* array = (Array*) arg;
+    // if (array && array->length && array->items) {
+    //     free(array->items);
+    //     array->items = 0;
+    // }
+}
+
 /*
  * Load the nif. Initialize some stuff and such
  */
-static int on_load(ErlNifEnv* env, void** priv, ERL_NIF_TERM info)
-{
+static int on_load(ErlNifEnv* env, void** priv, ERL_NIF_TERM info) {
+    ErlNifResourceType* rt = enif_open_resource_type(env, "tuple_nif", "array_type", destruct_array, ERL_NIF_RT_CREATE, NULL);
+    if(!rt) return -1;
+    array_type = rt;
     return 0;
 }
 
@@ -133,6 +190,8 @@ static ErlNifFunc nif_funcs[] = {
     {"dirty_update_binary", 3, dirty_update_binary},
     {"update_binary", 3, update_binary},
     {"get_sub_binary", 3, get_sub_binary},
+    {"res_make", 2, res_make},
+    {"res_length", 1, res_length},
 };
 
 ERL_NIF_INIT(Elixir.UtilsNif, nif_funcs, on_load, on_reload, on_upgrade, NULL)

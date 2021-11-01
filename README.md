@@ -120,6 +120,12 @@ View the detail result in html
 MIX_ENV=test mix coveralls.html
 ```
 
+## Links
+https://elixirforum.com/t/the-nif-resource-is-destroyed-if-you-put-it-in-the-ets-table/18335/3
+
+http://erlang.org/doc/man/erl_nif.html
+
+
 ## Thanks
 
  * [High-loaded systems developer contest](https://highloadcup.ru)
@@ -127,3 +133,4 @@ MIX_ENV=test mix coveralls.html
  * Alex Golubov
  * Max Pavlenko
  * Sergio Tulentsev
+

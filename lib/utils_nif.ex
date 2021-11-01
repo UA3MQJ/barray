@@ -27,6 +27,10 @@ defmodule UtilsNif do
   def get_sub_binary(<<bin :: binary>>, element_size, position),
     do: get_sub_binary(<<bin :: binary>>, element_size, position)
 
+  def res_make(len, width), do: res_make(len, width)
+
+  def res_length(res), do: res_length(res)
+
   # defp utils(_, _) do
   #   exit(:nif_library_not_loaded)
   # end
